@@ -5,7 +5,7 @@ from traitlets import Unicode, Bool, Integer, Float, TraitError, validate
 @widgets.register('InteractiveRender')
 class InteractiveRender(widgets.DOMWidget):
     """
-    Interactive Render Widget
+    InteractiveRender Widget
     """
     _model_name = Unicode('InteractiveRenderModel').tag(sync=True)
     _model_module = Unicode('yt_widgets').tag(sync=True)

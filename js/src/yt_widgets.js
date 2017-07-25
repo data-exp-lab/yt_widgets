@@ -29,29 +29,50 @@ var InteractiveRenderView = widgets.DOMWidgetView.extend({
     render: function() {
         this.url = this.model.get('url');
         this.el.id = `InteractiveRender-${seq++}`;
-/*        this.req = {
+        this.req = {
             plotId    : this.el.id,
-            Type      : 'SERVICE',
-            Service   : 'TWOMASS',
-            Title     : '2mass from service',
-            GridOn     : true,
-            SurveyKey  : 'k',
-            WorldPt    : '10.68479;41.26906;EQ_J2000',
-            SizeInDeg  : '.12',
-            AllowImageSelection : true
-        };*/
-//      this.model.on('change:GridOn change:SurveyKey change:FilePath', this.redraw, this);
+        };
         this.model.on('change:zoom', this.update_zoom, this);
         this.model.on('change:x_pan change:y_pan', this.update_pan, this);
         this.redraw = this.redraw.bind(this);
         this.update_zoom = this.update_zoom.bind(this);
         this.zoom_changed = this.zoom_changed.bind(this);
-        this.zoomListner = util.addActionListener(action.type.ZOOM_IMAGE, this.zoom_changed);
         this.update_pan = this.update_pan.bind(this);
         this.pan_changed = this.pan_changed.bind(this);
-        //this.panListner = util.addActionListener(action.type.PROCESS_SCROLL, this.pan_changed);
         setTimeout(this.redraw, 0);
     },
+
+    redraw: function() {
+        if (this.hasOwnProperty("url") && (this.url.length === 0)) {
+            yt.InteractiveRender(this.el.id, this.req);
+        }
+        else {
+            console.log('using url ' + this.url);
+            firefly.InteractiveRender(this.el.id, {url: this.url, plotId: this.el.id});
+        }
+    }
+
+    update_zoom: function() {
+        console.log('updating zoom to ' + this.model.get('zoom'));
+        yt.zoom(this.model.get('zoom'));
+    },
+
+    zoom_changed: function(action,state) {        //callback for a zoom change
+        if (action.payload.plotId === this.req.plotId) {
+            var plot= yt.InteractiveRender();  // get the plot
+            console.log('I got a replot, zoom factor= ' + plot.zoomFactor);
+            zoom_factor = Math.round(parseFloat(plot.zoomFactor)*100)/100
+            var original_zoom = Math.round(this.model.get('zoom')*100)/100;
+            console.log('model zoom = ' + original_zoom);
+            if (zoom_factor != original_zoom){
+                console.log('updating model zoom to ' + zoom_factor);
+                this.model.set('zoom', zoom_factor);
+                this.touch();
+            }
+        }
+     },
+
+});
 
 // BOILERPLATE:
 module.exports = {
