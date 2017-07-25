@@ -7,10 +7,10 @@ class InteractiveRender(widgets.DOMWidget):
     """
     Interactive Render Widget
     """
-    _model_name = Unicode('InteractiveRender').tag(sync=True)
+    _model_name = Unicode('InteractiveRenderModel').tag(sync=True)
     _model_module = Unicode('yt_widgets').tag(sync=True)
     _model_module_version = Unicode('0.1.0').tag(sync=True)
-    _view_name = Unicode('InteractiveRender').tag(sync=True)
+    _view_name = Unicode('InteractiveRenderView').tag(sync=True)
     _view_module = Unicode('yt_widgets').tag(sync=True)
     _view_module_version = Unicode('0.1.0').tag(sync=True)
     x_pan = Float(1.0).tag(sync=True)

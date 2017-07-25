@@ -6,13 +6,14 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yt_widgets/yt_widgets.git"
+    "url": "https://github.com/Nathanael-Claussen/yt_widgets.git"
   },
   "keywords": [
     "jupyter",
     "widgets",
     "ipython",
-    "ipywidgets"
+    "ipywidgets",
+    "yt"
   ],
   "scripts": {
     "prepublish": "webpack",

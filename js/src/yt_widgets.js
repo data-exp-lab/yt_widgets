@@ -8,10 +8,10 @@ var _ = require('underscore');
 //
 // When serialiazing entire widget state for embedding, only values different from the
 // defaults will be specified.
-var ImageModel = widgets.DOMWidgetModel.extend({
+var InteractiveRenderModel = widgets.DOMWidgetModel.extend({
     defaults: _.extend(_.result(this, 'widgets.DOMWidgetModel.prototype.defaults'), {
-        _model_name : 'InteractiveRender',
-        _view_name : 'InteractiveRender',
+        _model_name : 'InteractiveRenderModel',
+        _view_name : 'InteractiveRenderView',
         _model_module : 'yt-widgets',
         _view_module : 'yt-widgets',
         _model_module_version : '0.1.0',
@@ -25,7 +25,7 @@ var action = yt.action;        // Not sure what these are called in YT
 
 var seq = 1;
 // Custom View. Renders the widget model.
-var ImageView = widgets.DOMWidgetView.extend({
+var InteractiveRenderView = widgets.DOMWidgetView.extend({
     render: function() {
         this.url = this.model.get('url');
         this.el.id = `InteractiveRender-${seq++}`;
@@ -60,6 +60,6 @@ var ImageView = widgets.DOMWidgetView.extend({
 
 // BOILERPLATE:
 module.exports = {
-    ImageModel : ImageModel,
-    ImageView : ImageView
+    ImageModel : InteractiveRenderModel,
+    ImageView : InteractiveRenderView
 };
