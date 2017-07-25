@@ -40,20 +40,15 @@ var InteractiveRenderView = widgets.DOMWidgetView.extend({
             SizeInDeg  : '.12',
             AllowImageSelection : true
         };*/
-        this.model.on('change:GridOn change:SurveyKey change:FilePath', this.redraw, this);
-        this.model.on('change:colorbar', this.update_color, this);
+//      this.model.on('change:GridOn change:SurveyKey change:FilePath', this.redraw, this);
         this.model.on('change:zoom', this.update_zoom, this);
         this.model.on('change:x_pan change:y_pan', this.update_pan, this);
         this.redraw = this.redraw.bind(this);
-        this.update_color = this.update_color.bind(this);
-        this.color_changed = this.color_changed.bind(this);
-        this.colorListner = util.addActionListener(action.type.COLOR_CHANGE, this.color_changed);
         this.update_zoom = this.update_zoom.bind(this);
         this.zoom_changed = this.zoom_changed.bind(this);
         this.zoomListner = util.addActionListener(action.type.ZOOM_IMAGE, this.zoom_changed);
         this.update_pan = this.update_pan.bind(this);
         this.pan_changed = this.pan_changed.bind(this);
-        this.stopPickListner = util.addActionListener(action.type.SELECT_POINT, this.pan_changed);
         //this.panListner = util.addActionListener(action.type.PROCESS_SCROLL, this.pan_changed);
         setTimeout(this.redraw, 0);
     },
