@@ -41,6 +41,6 @@ var ViewView = widgets.DOMWidgetView.extend({
 
 // BOILERPLATE:
 module.exports = {
-    ImageModel : ViewModel,
-    ImageView : ViewView
+    ViewModel : ViewModel,
+    ViewView : ViewView
 };

@@ -8,6 +8,7 @@ if (window.require) {
         map: {
             "*" : {
                 "yt_widgets": "nbextensions/yt_widgets/index",
+                "jupyter-js-widgets": "nbextensions/jupyter-js-widgets/extension"
             }
         }
     });

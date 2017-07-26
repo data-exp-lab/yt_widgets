@@ -8,5 +8,20 @@
 __webpack_public_path__ = document.querySelector('body').getAttribute('data-base-url') + 'nbextensions/yt_widgets/';
 
 // Export widget models and views, and the npm package version number.
-module.exports = require('./example.js');
+module.exports = {}
+
+var loadedModules = [
+	require('./yt_widgets.js')
+];
+
+for (var i in loadedModules) {
+    if (loadedModules.hasOwnProperty(i)) {
+        var loadedModule = loadedModules[i];
+        for (var target_name in loadedModule) {
+            if (loadedModule.hasOwnProperty(target_name)) {
+                module.exports[target_name] = loadedModule[target_name];
+            }
+        }
+    }
+}
 module.exports['version'] = require('../package.json').version;
