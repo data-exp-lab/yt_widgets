@@ -20,11 +20,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1",
+    "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "path": "^0.12.7"
   },
   "dependencies": {
     "jupyter-js-widgets": "^2.1.4",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "leaflet-draw": "^0.3.0",
+    "leaflet-fullscreen": "^1.0.1"
   }
 }

@@ -12,8 +12,8 @@ var ViewModel = widgets.DOMWidgetModel.extend({
     defaults: _.extend(_.result(this, 'widgets.DOMWidgetModel.prototype.defaults'), {
         _model_name : 'ViewModel',
         _view_name : 'ViewView',
-        _model_module : 'yt-widgets',
-        _view_module : 'yt-widgets',
+        _model_module : 'yt_widgets',
+        _view_module : 'yt_widgets',
         _model_module_version : '0.1.0',
         _view_module_version : '0.1.0'
     })
@@ -22,7 +22,7 @@ var ViewModel = widgets.DOMWidgetModel.extend({
 // Custom View. Renders the widget model.
 var ViewView = widgets.DOMWidgetView.extend({
   render: function() {
-
+    
   },
 
   redraw: function() {

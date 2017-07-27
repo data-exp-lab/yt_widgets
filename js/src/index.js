@@ -7,6 +7,18 @@
 // dynamically.
 __webpack_public_path__ = document.querySelector('body').getAttribute('data-base-url') + 'nbextensions/yt_widgets/';
 
+// Load css
+require('leaflet/leaflet.css');
+require('leaflet-fullscreen/dist/leaflet.fullscreen.css');
+require('leaflet-draw/dist/leaflet.draw.css');
+
+// Forcibly load the marker icon images to be in the bundle.
+require('leaflet/images/marker-shadow.png');
+require('leaflet/images/marker-icon.png');
+require('leaflet/images/marker-icon-2x.png');
+require('leaflet-fullscreen/dist/fullscreen.png');
+require('leaflet-fullscreen/dist/fullscreen@2x.png');
+
 // Export widget models and views, and the npm package version number.
 module.exports = {}
 
@@ -24,4 +36,5 @@ for (var i in loadedModules) {
         }
     }
 }
+
 module.exports['version'] = require('../package.json').version;

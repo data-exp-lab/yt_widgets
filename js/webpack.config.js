@@ -2,8 +2,19 @@ var version = require('./package.json').version;
 
 // Custom webpack loaders are generally the same for all webpack bundles, hence
 // stored in a separate local variable.
+
+var leaflet_marker_selector = /leaflet\/images\/marker-.*\.png/;
+var leaflet_layer_icon = /leaflet\/images\/layers.*\.png/;
+var fullscreen_icon = /leaflet-fullscreen\/dist\/fullscreen.*\.png/;
+var path = require('path');
+
 var loaders = [
     { test: /\.json$/, loader: 'json-loader' },
+    { test: /\.css$/, loader: 'style-loader!css-loader' },
+    { test: leaflet_marker_selector, loader: 'file?name=[name].[ext]' },
+    { test: leaflet_layer_icon, loader: 'file?name=[name].[ext]' },
+    { test: fullscreen_icon, loader: 'file?name=[name].[ext]' },
+    { test: /\.(jpg|png|gif|svg)$/, loader: 'file', exclude: [leaflet_marker_selector,fullscreen_icon]}
 ];
 
 
@@ -39,6 +50,12 @@ module.exports = [
         module: {
             loaders: loaders
         },
+        resolve:{
+            root: [
+                path.resolve("./node_modules"),
+                path.resolve("./src")
+            ]
+        },
         externals: ['jupyter-js-widgets']
     },
     {// Embeddable yt_widgets bundle
@@ -65,6 +82,12 @@ module.exports = [
         devtool: 'source-map',
         module: {
             loaders: loaders
+        },
+        resolve:{
+            root: [
+                path.resolve("./node_modules"),
+                path.resolve("./src")
+            ]
         },
         externals: ['jupyter-js-widgets']
     }
