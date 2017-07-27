@@ -14,9 +14,6 @@ class View(widgets.DOMWidget):
     _view_module = Unicode('yt_widgets').tag(sync=True)
     _view_module_version = Unicode('0.1.0').tag(sync=True)
 
-    x_pan = Float(1.0).tag(sync=True)
-    y_pan = Float(1.0).tag(sync=True)
-    zoom = Float(1.0).tag(sync=True)
 
     def __init__(self, **kwargs):
         super(View, self).__init__(**kwargs)
@@ -31,6 +28,7 @@ class TextureSlider(widgets.FloatSlider):
     def __init__(self, field, **kwargs):
         """Extends FloatSlider from ipywidgets.
         Args:
+            field:    ~
             **kwargs: Arbitrary keyword arguments for FloatRangeSlider.
         """
         super(TextureSlider, self).__init__(**kwargs)
@@ -43,20 +41,3 @@ class TextureSlider(widgets.FloatSlider):
         self.orientation = 'vertical'
 
         #self.link()
-
-
-# The property field of the catalog that the slider will use.
-# Need a property field.
-
-'''
-    def link(self):
-        """Link slider values with the ``filter_range`` from tileLayer."""
-        self._layer.filter_property = self.property
-        self.link = dlink((self, 'value'), (self._layer, 'filter_range'))
-
-    def unlink(self):
-        """Unlink from the provided tileLayer."""
-        self.link.unlink()
-        del self.link
-        self._layer.filter_property = ''
-'''
