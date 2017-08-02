@@ -1,5 +1,6 @@
 import ipywidgets as widgets
 from traitlets import Unicode, Bool, Integer, Float, TraitError, validate
+import yt
 
 
 @widgets.register('View')
@@ -13,7 +14,11 @@ class View(widgets.DOMWidget):
     _view_name = Unicode('ViewView').tag(sync=True)
     _view_module = Unicode('yt_widgets').tag(sync=True)
     _view_module_version = Unicode('0.1.0').tag(sync=True)
+    parameters = Unicode('').tag(sync=True)
 
+    @staticmethod
+    def parameters(ds, **kwargs):
+        return ds.parameters
 
     def __init__(self, **kwargs):
         super(View, self).__init__(**kwargs)

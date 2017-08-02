@@ -22,20 +22,13 @@ var ViewModel = widgets.DOMWidgetModel.extend({
 // Custom View. Renders the widget model.
 var ViewView = widgets.DOMWidgetView.extend({
   render: function() {
-    
+      this.parameters_changed();
+      this.model.on('change:parameters', this.parameters_changed, this);
   },
 
-  redraw: function() {
-
-  },
-
-  update_zoom: function() {
-
-  },
-
-  update_pan: function() {
-
-  },
+  parameters_changed: function() {
+      this.el.textContent = this.model.get('parameters');
+  }
 
 });
 
