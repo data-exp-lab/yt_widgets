@@ -18,7 +18,7 @@ class View(widgets.DOMWidget):
 
     @staticmethod
     def parameters(ds, **kwargs):
-        return ds.parameters
+        parameters = ds.parameters
 
     def __init__(self, **kwargs):
         super(View, self).__init__(**kwargs)
