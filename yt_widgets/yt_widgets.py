@@ -16,8 +16,11 @@ class View(widgets.DOMWidget):
     parameters = Dict({}).tag(sync=True)
 
     def __init__(self, ds):
-        self.parameters = ds.parameters
-
+        try:
+            self.parameters = ds.parameters
+        except AttributeError:
+            print('AttributeError, needs fixing')
+            raise
 
 @widgets.register('TextureSlider')
 class TextureSlider(widgets.FloatSlider):
