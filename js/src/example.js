@@ -5,16 +5,7 @@ var _ = require('underscore');
 // Custom Model. Custom widgets models must at least provide default values
 // for model attributes, including
 //
-//  - `_view_name`
-//  - `_view_module`
-//  - `_view_module_version`
 //
-//  - `_model_name`
-//  - `_model_module`
-//  - `_model_module_version`
-//
-//  when different from the base class.
-
 // When serialiazing the entire widget state for embedding, only values that
 // differ from the defaults will be specified.
 var HelloModel = widgets.DOMWidgetModel.extend({

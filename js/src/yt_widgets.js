@@ -15,8 +15,7 @@ var ViewModel = widgets.DOMWidgetModel.extend({
         _model_module : 'yt_widgets',
         _view_module : 'yt_widgets',
         _model_module_version : '0.1.0',
-        _view_module_version : '0.1.0',
-        parameters :
+        _view_module_version : '0.1.0'
     })
 });
 
@@ -26,6 +25,9 @@ var ViewModel = widgets.DOMWidgetModel.extend({
 // Custom View. Renders the widget model.
 var ViewView = widgets.DOMWidgetView.extend({
   render: function() {
+      this.req = {
+        parameters : {}
+      }
       this.parameters_changed();
       this.model.on('change:parameters', this.parameters_changed, this);
   },
