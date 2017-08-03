@@ -19,9 +19,6 @@ var ViewModel = widgets.DOMWidgetModel.extend({
     })
 });
 
-
-
-
 // Custom View. Renders the widget model.
 var ViewView = widgets.DOMWidgetView.extend({
   render: function() {

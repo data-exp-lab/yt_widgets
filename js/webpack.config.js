@@ -56,7 +56,7 @@ module.exports = [
                 path.resolve("./src")
             ]
         },
-        externals: ['jupyter-js-widgets']
+        externals: ['@jupyter-widgets/base']
     },
     {// Embeddable yt_widgets bundle
      //

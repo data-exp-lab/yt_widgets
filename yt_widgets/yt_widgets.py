@@ -1,5 +1,5 @@
 import ipywidgets as widgets
-from traitlets import Unicode, Bool, Integer, Float, TraitError, Dict, validate
+from traitlets import Unicode, Dict, validate
 
 
 @widgets.register('View')
@@ -15,33 +15,27 @@ class View(widgets.DOMWidget):
     _view_module_version = Unicode('0.1.0').tag(sync=True)
     parameters = Dict({}).tag(sync=True)
 
-    @staticmethod
-    def set_parameters(ds, **kwargs):
-        parameters = ds.parameters
+    def __init__(self, ds):
+        self.parameters = ds.parameters
 
-    def __init__(self, **kwargs):
-        super(View, self).__init__(**kwargs)
 
 @widgets.register('TextureSlider')
 class TextureSlider(widgets.FloatSlider):
     """
+    @todo:
     Widget for slicing through Mesh objects.
     """
-    #readout_format = Unicode('.3f').tag(sync=True)
 
     def __init__(self, field, **kwargs):
         """Extends FloatSlider from ipywidgets.
         Args:
-            field:    ~
+            field:    //see: @todo
             **kwargs: Arbitrary keyword arguments for FloatRangeSlider.
         """
         super(TextureSlider, self).__init__(**kwargs)
         self.min, self.max = (-10, 10)
-        #self.min, self.max = [index.grid_levels.min(). index.grid_levels.max()]
         self.value = 0
         self.step = 0.1
         self.layout.width = '100%'
         self.description = "Slice Position"
         self.orientation = 'vertical'
-
-        #self.link()
