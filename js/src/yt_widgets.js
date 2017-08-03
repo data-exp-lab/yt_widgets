@@ -1,4 +1,4 @@
-var widgets = require('jupyter-js-widgets');
+var widgets = require('@jupyter-widgets/base');
 var _ = require('underscore');
 
 
@@ -15,9 +15,13 @@ var ViewModel = widgets.DOMWidgetModel.extend({
         _model_module : 'yt_widgets',
         _view_module : 'yt_widgets',
         _model_module_version : '0.1.0',
-        _view_module_version : '0.1.0'
+        _view_module_version : '0.1.0',
+        parameters :
     })
 });
+
+
+
 
 // Custom View. Renders the widget model.
 var ViewView = widgets.DOMWidgetView.extend({
