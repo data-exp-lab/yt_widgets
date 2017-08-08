@@ -19,7 +19,7 @@ class DisplayParam(widgets.DOMWidget):
 
     def __init__(self, ds):
         """
-        The link should be from the value attribute of the Dropdown widget/class
+        The link should be from the value attribute of the Dropdown widget/class (still todo)
         """
         try:
             self.parameters = ds.parameters
@@ -30,7 +30,7 @@ class DisplayParam(widgets.DOMWidget):
 @widgets.register('Dropdown')
 class Dropdown(DisplayParam):
     """
-    Dropdown menu widget, derived from the DisplayParam class.
+    Dropdown menu widget, derived from "DisplayParam" class.
     """
 
     def __init__(self, ds, **kwargs):
