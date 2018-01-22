@@ -15,9 +15,8 @@ class DisplayParam(widgets.DOMWidget):
     _view_module = Unicode('yt_widgets').tag(sync=True)
     _view_module_version = Unicode('0.1.0').tag(sync=True)
     parameters = Dict().tag(sync=True)
-    w = widgets.Dropdown()
 
-    def __init__(self, ds):
+    def __init__(self, ds, **kwargs):
         """
         The link should be from the value attribute of the Dropdown widget/class (still todo)
         """
@@ -27,14 +26,28 @@ class DisplayParam(widgets.DOMWidget):
             print('AttributeError, needs fixing')
             raise
 
-@widgets.register('Dropdown')
-class Dropdown(DisplayParam):
+    def _parameter_widgets(self, ds):
+
+        widgets.Dropdown(options = ds.parameters)
+
+@widgets.register('InteractiveSliceplot')
+class InteractiveSliceplot(widgets.DOMWidget):
     """
-    Dropdown menu widget, derived from "DisplayParam" class.
+    This is a class this will call a sliceplot and link it to some widget features"
     """
+    _model_name = Unicode('InteractiveSliceplot').tag(sync=True)
+    _model_name = Unicode('InteractiveSliceplot').tag(sync=True)
+    _model_module = Unicode('yt_widgets').tag(sync=True)
+    _model_module_version = Unicode('0.1.0').tag(sync=True)
+    _view_name = Unicode('InteractiveSliceplot').tag(sync=True)
+    _view_module = Unicode('yt_widgets').tag(sync=True)
+    _view_module_version = Unicode('0.1.0').tag(sync=True)
+    parameters = Dict().tag(sync=True)
 
     def __init__(self, ds, **kwargs):
-        """Extends "DisplayParam" class from yt_widgets
-           Extends "Dropdown" class from ipywidgets
         """
-        super(DisplayParam, self).__init__(**kwargs)
+        This will initialize a sliceplot with zoom controls
+        """
+
+    def _sliceplot(self, ds):
+        widgets.InteractiveSliceplot(options = yt.SlicePlot(ds, 'z', 'density'))
