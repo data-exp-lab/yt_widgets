@@ -33,7 +33,7 @@ class DisplayParam(widgets.DOMWidget):
 @widgets.register('InteractiveSliceplot')
 class InteractiveSliceplot(widgets.DOMWidget):
     """
-    This is a class this will call a sliceplot and link it to some widget features"
+    This is a class this will call a sliceplot and link it to some widget features
     """
     _model_name = Unicode('InteractiveSliceplot').tag(sync=True)
     _model_name = Unicode('InteractiveSliceplot').tag(sync=True)
@@ -51,3 +51,13 @@ class InteractiveSliceplot(widgets.DOMWidget):
 
     def _sliceplot(self, ds):
         widgets.InteractiveSliceplot(options = yt.SlicePlot(ds, 'z', 'density'))
+
+@widgets.register('HelloWorld')
+class HelloWorld(widgets.DOMWidget):
+    _model_name = Unicode("HelloWorld")
+    _model_name = Unicode("HelloWorld")
+    _model_module = Unicode("yt_widgets").tag(sync=True)
+    _model_module_version = Unicode('0.1.0').tag(sync=True)
+    _view_name = Unicode("InteractiveSliceplot").tag(sync=True)
+    _view_module = Unicode("yt_widgets").tag(sync=True)
+    _view_module_version = Unicode("0.1.0").tag(sync=True)
