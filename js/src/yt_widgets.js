@@ -1,6 +1,8 @@
 var widgets = require('@jupyter-widgets/base');
 var _ = require('underscore');
+var THREE = require('three');
 
+import * as three from 'three';
 
 // Custom Model. Custom widgets models must at least provide default values
 // for model attributes, including `_model_name`, `_view_name`, `_model_module`
@@ -40,8 +42,8 @@ var DisplayParamView = widgets.DOMWidgetView.extend({
 // Second Module:
 var InteractiveSliceplotModel = widgets.DOMWidgetModel.extend({
     defaults: _.extend(_.result(this, 'widgets.DOMWidgetModel.prototype.defaults'), {
-      _model_name : 'InteractiveSliceplot',
-      _view_name : 'InteractiveSliceplot',
+      _model_name : 'InteractiveSliceplotModel',
+      _view_name : 'InteractiveSliceplotView',
       _model_module : 'yt_widgets',
       _view_module : 'yt_widgets',
       _model_module_version : '0.1.0',
@@ -64,39 +66,73 @@ var InteractiveSliceplotView = widgets.DOMWidgetView.extend({
 });
 
 // Third and final module
-var HelloWorld = widgets.DOMWidgetModel.extend({
+var HelloWorldModel = widgets.DOMWidgetModel.extend({
     defaults: _.extend(_.result(this, 'widgets.DOMWidgetModel.prototype.defaults'),{
-      _model_name : 'HelloWorld',
-      _view_name : 'HelloWorld',
+      _model_name : 'HelloWorldModel',
+      _view_name : 'HelloWorldView',
       _model_module : 'yt_widgets',
       _view_module : 'yt_widgets',
       _model_module_version : '0.1.0',
-      _view_module_version : '0.1.0'
-      value : null
+      _view_module_version : '0.1.0',
     })
 });
 
-var HelloWorld = widgets.DOMWidgetView.extend({
-    render: function(){
-      this.canvas = document.createElement('canvas');
-      this.el.append(this.canvas);
-      this.canvas.width = 10;
-      this.canvas.height = 64;
-      this.draw_circle();
-      //this.model.on('change:data', this.draw_circle, this);
-    }
+var HelloWorldView = widgets.DOMWidgetView.extend({
+//    render: function(){
+//      this.canvas = document.createElement('canvas');
+//      this.canvas.width = 128;
+//      this.canvas.height =256;
+//      this.el.append(this.canvas);
 
-    draw_circle: function(){
-      var geometry = new THREE.CircleGeometry(5,32);
-      var material = new THREE.MeshBasicMaterial({color:0xffff00});
-      var circle = new THREE.Mesh(geometry, material);
-      scene.add(circle);
-    }
+//Apparently "var" cannot be used as "shorthand" -leads me to belive that THREE is not, in fact, loaded.. :(
+//      var camera, scene, renderer;
+//      var geometry, material, mesh;
+
+      init();
+      animate();
+
+      function init() {
+
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+        camera.position.z = 1000;
+
+        var scene = new THREE.Scene();
+
+        var geometry = new THREE.BoxGeometry(200, 200, 200);
+        var material = new THREE.MeshBasicMaterial({
+          color: 0xff0000
+        });
+
+        var mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        document.body.appendChild(renderer.domElement);
+
+      }
+
+      function animate() {
+
+        requestAnimationFrame(animate);
+
+        mesh.rotation.x += 0.01;
+        mesh.rotation.y += 0.02;
+
+        renderer.render(scene, camera);
+
+      }
+//      }
 });
 
 
 //
 module.exports = {
     DisplayParamModel : DisplayParamModel,
-    DisplayParamView : DisplayParamView
+    DisplayParamView : DisplayParamView,
+    InteractiveSliceplotModel : InteractiveSliceplotModel,
+    InteractiveSliceplotView : InteractiveSliceplotView,
+    HelloWorldModel : HelloWorldModel,
+    HelloWorldView : HelloWorldView
 };

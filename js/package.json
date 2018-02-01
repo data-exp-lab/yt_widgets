@@ -31,6 +31,7 @@
     "jupyter-js-widgets": "^2.1.4",
     "underscore": "^1.8.3",
     "leaflet-draw": "^0.3.0",
-    "leaflet-fullscreen": "^1.0.1"
+    "leaflet-fullscreen": "^1.0.1",
+    "three": "^0.89.0"
   }
 }
