@@ -88,10 +88,11 @@ var HelloWorldView = widgets.DOMWidgetView.extend({
 //      var camera, scene, renderer;
 //      var geometry, material, mesh;
 
-      init();
-      animate();
+      render: function() {
+        this.el.append(this.init());
+      },
 
-      function init() {
+      init: function() {
 
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
         camera.position.z = 1000;
@@ -111,9 +112,9 @@ var HelloWorldView = widgets.DOMWidgetView.extend({
 
         document.body.appendChild(renderer.domElement);
 
-      }
+      },
 
-      function animate() {
+      animate: function() {
 
         requestAnimationFrame(animate);
 
